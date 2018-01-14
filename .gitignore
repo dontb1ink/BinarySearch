@@ -1,1 +1,4 @@
-a.out
+build/*
+!build/CMakeLists.txt
+!build/DownloadProject.CMakeLists.cmake.in
+!build/DownloadProject.cmake
