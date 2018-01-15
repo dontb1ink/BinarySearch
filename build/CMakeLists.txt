@@ -32,7 +32,18 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
                         "${gmock_SOURCE_DIR}/include")
 endif()
 
-# Trivial example using gtest and gmock
-add_executable(BinarySearchTest ../src/BinarySearchTest.cpp)
-target_link_libraries(BinarySearchTest gtest gmock_main)
-add_executable(main ../src/main.cpp ../src/BinarySearch.cpp)
+# ================================
+set(CommonSources
+    ../src/BinarySearch.cpp
+    ../src/BinarySearch.h)
+set(MainSources
+    ../src/main.cpp
+    ${CommonSources})
+set(TestSources
+    ../src/test.cpp
+    ../src/BinarySearchTest.cpp
+    ${CommonSources})
+add_compile_options(-g -std=c++11 -Wall -pedantic)
+add_executable(test.out ${TestSources})
+target_link_libraries(test.out gtest gmock_main)
+add_executable(main.out ${MainSources})
